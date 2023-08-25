@@ -1,7 +1,7 @@
 import os
 import sys
 
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
@@ -9,7 +9,7 @@ from pyrogram.types import Message
 from services.sox import generateSpek
 from services.tgFile import tgInfo
 
-load_dotenv()
+#load_dotenv()
 
 #sys.path.append(os.path.join(os.getcwd(), 'services'))
 
@@ -31,10 +31,14 @@ For audio Spek:
 Made by @thekvt🧪"""
 
 
-
+'''
 app = Client('botsession', api_id=os.getenv('api_id'),
              api_hash=os.getenv('api_hash'),
              bot_token=os.getenv('bot_token'))
+'''
+app = Client('botsession', api_id=25092986,
+             api_hash='77b4dac018b806e625c3e9b1e1a65b6d',
+             bot_token='6349129074:AAGSLe4O37msRykoOUP7BIzeUEJEdxS8B-U')
 
 print("MediaInfo bot started!", flush=True)
 
