@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:21.04
 COPY . .
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -y
