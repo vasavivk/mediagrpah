@@ -1,0 +1,62 @@
+import json
+import os
+import re
+import subprocess
+
+from pyrogram import Client
+from pyrogram.types import Message
+
+from services import utils
+
+def tgInfo(client: Client, msg: Message):
+    print("processing TG", flush=True)
+    message = msg.reply_to_message
+    # print(message)
+    mediaType = message.media.value
+    if mediaType == 'video':
+        media = message.video
+    elif mediaType == 'audio':
+        media = message.audio
+    elif mediaType == 'document':
+        media = message.document
+    else:
+        print("This media type is not supported", flush=True)
+        raise Exception("`This media type is not supported`")
+
+    mime = media.mime_type
+    fileName = media.file_name
+    size = media.file_size
+
+    print(fileName, size, flush=True)
+
+    if mediaType == 'document':
+        if 'video' not in mime and 'audio' not in mime and 'image' not in mime:
+            print("Makes no sense", flush=True)
+            raise Exception("`This file makes no sense to me.`")
+
+    if int(size) <= 50000000:
+        message.download(os.path.join(os.getcwd(), fileName))
+
+    else:
+        for chunk in client.stream_media(message, limit=5):
+            # save these chunks to a file
+            with open(fileName, 'ab') as f:
+                f.write(chunk)
+
+    mediainfo_txt = subprocess.check_output(
+        ['mediainfo', fileName]).decode("utf-8")
+
+
+    try:
+        checkm = manger(mediainfo_txt)
+        msg.reply_text([fileName](checkm) ,disable_web_page_preview=False)
+        
+    except:
+        message.reply_text(
+            "Something bad occurred particularly with this file.")
+        print("Something bad occurred for tg file", flush=True)
+    finally:
+        os.remove(fileName)
+
+
+print("TG file module loaded", flush=True)
