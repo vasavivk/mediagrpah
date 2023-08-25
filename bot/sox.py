@@ -3,7 +3,7 @@ import subprocess
 
 from pyrogram.types import Message
 
-from services import utils
+from bot import utils
 
 
 def generateSpek(msg: Message):
