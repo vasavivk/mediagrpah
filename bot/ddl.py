@@ -19,7 +19,7 @@ def ddlinfo(msg: Message):
         raise Exception("`Something went wrong.\nPlease make sure you used a valid URL.`")
 
 def gen_ddl_mediainfo(msg: Message, ddl: str, name: str):
-    reply_msg = message.reply_text("Generating Mediainfo, Please wait...")
+    #reply_msg = message.reply_text("Generating Mediainfo, Please wait...")
     try:
         rand_str = randstr()
         download_path = f"download/{name}"
