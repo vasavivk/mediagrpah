@@ -1,0 +1,13 @@
+{
+    "name": "MediaInfoBot",
+    "description": "Multiutility telegram bot by bunny",
+    "repository": "https://github.com/thekvt/MediaInfoBot",
+    "logo": "https://imgur.com/UsUog2Z.png",
+    "keywords": [
+        "telegram",
+        "telegram-bot",
+        "mediainfo",
+        "spectrogram-bot"
+    ],
+    "stack": "container"
+}
