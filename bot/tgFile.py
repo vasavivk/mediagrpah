@@ -11,7 +11,7 @@ from bot import utils
 def tgInfo(client: Client, msg: Message):
     print("processing TG", flush=True)
     message = msg.reply_to_message
-    # print(message)
+    print("ok")
     if message.media.value == "video":
         media = message.video
     elif message.media.value == "audio":
@@ -20,7 +20,7 @@ def tgInfo(client: Client, msg: Message):
         media = message.document
     elif message.media.value == "voice":
         media = message.voice
-
+    print('done')
     else:
         print("This media type is not supported", flush=True)
         raise Exception("`This media type is not supported`")
