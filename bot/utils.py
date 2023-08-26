@@ -24,7 +24,7 @@ def format_sections(input_text):
 
 
 def manger(raw_info):
-    format_info= format_sections(input_text)
+    format_info= format_sections(raw_info)
     pre_link= create_telegraph_page(format_info)
     return pre_link
     
