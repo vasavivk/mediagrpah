@@ -12,13 +12,18 @@ def tgInfo(client: Client, msg: Message):
     print("processing TG", flush=True)
     message = msg.reply_to_message
     # print(message)
-    mediaType = message.media.value
-    if mediaType == 'video':
+    if message.media.value == "video":
         media = message.video
-    elif mediaType == 'audio':
+
+    elif message.media.value == "audio":
         media = message.audio
-    elif mediaType == 'document':
+
+    elif message.media.value == "document":
         media = message.document
+
+    elif message.media.value == "voice":
+        media = message.voice
+
     else:
         print("This media type is not supported", flush=True)
         raise Exception("`This media type is not supported`")
