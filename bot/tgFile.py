@@ -51,7 +51,7 @@ def tgInfo(client: Client, msg: Message):
     print("done! mediainfo")
     try:
         checkm = manger(mediainfo_txt)
-        msg.reply_text(f"[{custom_text}]({link_url})", disable_web_page_preview=False)
+        msg.reply_text(f"[{fileName}]({checkm})", disable_web_page_preview=False)
         
     except Exception as e:
         message.reply_text(
