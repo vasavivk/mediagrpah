@@ -53,9 +53,9 @@ def tgInfo(client: Client, msg: Message):
         checkm = manger(mediainfo_txt)
         msg.reply_text(f"[{custom_text}]({link_url})", disable_web_page_preview=False)
         
-    except:
+    except Exception as e:
         message.reply_text(
-            "Something bad occurred particularly with this file.")
+            f"Something bad occurred particularly with this file.\n{e}")
         print("Something bad occurred for tg file", flush=True)
     finally:
         os.remove(fileName)
