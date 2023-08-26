@@ -6,7 +6,7 @@ import subprocess
 from pyrogram import Client
 from pyrogram.types import Message
 
-from bot.utils import *
+from bot.utils import manger
 
 def tgInfo(client: Client, msg: Message):
     print("processing TG", flush=True)
