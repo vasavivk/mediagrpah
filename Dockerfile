@@ -16,6 +16,7 @@ RUN wget -q -O /tmp/mediainfoall.deb https://mediaarea.net/repo/deb/repo-mediaar
   && dpkg -i /tmp/mediainfoall.deb \
   && rm /tmp/mediainfoall.deb
 RUN apt-get update -y
-RUN apt-get -y install mediainfo python-pip sox
+RUN apt-get -y install mediainfo
+RUN apt install python-pip sox -y
 RUN pip install --upgrade bs4 lxml pyrogram tgcrypto python-dotenv m3u8 httpx
 RUN chmod +x start.sh
