@@ -12,16 +12,13 @@ def tgInfo(client: Client, msg: Message):
     print("processing TG", flush=True)
     message = msg.reply_to_message
     # print(message)
-    if message.media.value == "video":
+    if message.media == "video":
         media = message.video
-
-    elif message.media.value == "audio":
+    elif message.media == "audio":
         media = message.audio
-
-    elif message.media.value == "document":
+    elif message.media == "document":
         media = message.document
-
-    elif message.media.value == "voice":
+    elif message.media == "voice":
         media = message.voice
 
     else:
