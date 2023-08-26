@@ -20,11 +20,11 @@ def tgInfo(client: Client, msg: Message):
         media = message.document
     elif message.media.value == "voice":
         media = message.voice
-    print('done')
+    
     else:
         print("This media type is not supported", flush=True)
         raise Exception("`This media type is not supported`")
-
+    print('done')
     mime = media.mime_type
     fileName = media.file_name
     size = media.file_size
