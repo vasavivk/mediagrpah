@@ -2,8 +2,8 @@ import os
 import subprocess
 
 from pyrogram.types import Message
+from bot.utils import *
 
-import utils
 def generateSpek(msg: Message):
     print("Got the audio spek request.")
     attatchment = msg.reply_to_message
