@@ -12,9 +12,9 @@ RUN wget -q -O /tmp/libtinyxml2-6a.deb http://kr.archive.ubuntu.com/ubuntu/pool/
   && dpkg -i /tmp/libtinyxml2-6a.deb \
   && rm /tmp/libtinyxml2-6a.deb
 
-RUN wget -q -O /tmp/mediainfo.deb https://mediaarea.net/download/binary/mediainfo/23.07/mediainfo_23.07-1_amd64.xUbuntu_20.04.deb \
-  && dpkg -i /tmp/mediainfo.deb \
-  && rm /tmp/mediainfo.deb
+RUN wget -q -O /tmp/mediainfoall.deb https://mediaarea.net/repo/deb/repo-mediaarea_1.0-21_all.deb \
+  && dpkg -i /tmp/mediainfoall.deb \
+  && rm /tmp/mediainfoall.deb
 RUN apt-get update -y
 RUN apt-get -y install mediainfo libmediainfo0 python3-pip sox
 RUN pip install --upgrade bs4 lxml pyrogram tgcrypto pycryptodomex python-dotenv m3u8 httpx
