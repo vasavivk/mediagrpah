@@ -3,7 +3,7 @@ COPY . .
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -y
 RUN apt-get upgrade -y
-RUN apt-get -y install wget ffmpeg
+RUN apt-get -y install wget ffmpeg git libtinyxml2-9 libcurl3-gnutls libmms0 libzen0v5 libcurl4-gnutls-dev libzen-dev
 
 RUN wget -q -O /tmp/libzen0.deb https://mediaarea.net/download/binary/libzen0/0.4.41/libzen0v5_0.4.41-1_amd64.xUbuntu_20.04.deb \
   && dpkg -i /tmp/libzen0.deb \
