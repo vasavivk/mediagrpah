@@ -31,7 +31,7 @@ def tgInfo(client: Client, msg: Message):
 
     print(fileName, size, flush=True)
 
-    if mediaType == 'document':
+    if media == 'document':
         if 'video' not in mime and 'audio' not in mime and 'image' not in mime:
             print("Makes no sense", flush=True)
             raise Exception("`This file makes no sense to me.`")
