@@ -12,7 +12,8 @@ RUN apt-get update && apt-get install -y \
     wget \
     ffmpeg \
     libsox-fmt-mp3 \
-    sox
+    sox \
+    libmediainfo0
 
 RUN wget -q -O /tmp/libzen0v5.deb http://th.archive.ubuntu.com/ubuntu/pool/universe/libz/libzen/libzen0v5_0.4.40-1_amd64.deb \
   && dpkg -i /tmp/libzen0v5.deb \
@@ -23,9 +24,6 @@ RUN wget -q -O /tmp/libtinyxml2-6a.deb http://kr.archive.ubuntu.com/ubuntu/pool/
   && dpkg -i /tmp/libtinyxml2-6a.deb \
   && rm /tmp/libtinyxml2-6a.deb
 
-RUN wget -q -O /tmp/libmediainfo-dev.deb http://ftp.de.debian.org/debian/pool/main/libm/libmediainfo/libmediainfo-dev_22.12+dfsg-1_amd64.deb \
-  && dpkg -i /tmp/libmediainfo-dev.deb \
-  && rm /tmp/libmediainfo-dev.deb
 
 RUN wget -q -O /tmp/mediainfo.deb https://mediaarea.net/download/binary/mediainfo/22.12/mediainfo_22.12-1_amd64.xUbuntu_20.04.deb \
   && dpkg -i /tmp/mediainfo.deb \
