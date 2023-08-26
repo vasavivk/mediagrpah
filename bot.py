@@ -6,8 +6,8 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 
-from services.sox import generateSpek
-from services.tgFile import tgInfo
+from bot.sox import generateSpek
+from bot.tgFile import tgInfo
 
 #load_dotenv()
 
