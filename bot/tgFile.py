@@ -49,7 +49,7 @@ def tgInfo(client: Client, msg: Message):
 
     try:
         checkm = manger(mediainfo_txt)
-        msg.reply_text([fileName](checkm) ,disable_web_page_preview=False)
+        msg.reply_text(f"[{custom_text}]({link_url})", disable_web_page_preview=False)
         
     except:
         message.reply_text(
