@@ -2,7 +2,7 @@ import os
 import subprocess
 
 from pyrogram.types import Message
-from bot.utils import *
+from bot.utils import get_soxcap
 
 def generateSpek(msg: Message):
     print("Got the audio spek request.")
