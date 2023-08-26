@@ -3,7 +3,7 @@ import re
 import subprocess
 import httpx
 from pyrogram.types import Message
-import utils
+from bot.utils import *
 
 URLRx = re.compile(r"(http|ftp|https):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-])")
 nameRx = re.compile(r".+/(.+)")
