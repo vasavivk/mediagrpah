@@ -48,7 +48,7 @@ def tgInfo(client: Client, msg: Message):
     mediainfo_txt = subprocess.check_output(
         ['mediainfo', fileName]).decode("utf-8")
 
-    print("ok! mediainfo")
+    print("done! mediainfo")
     try:
         checkm = manger(mediainfo_txt)
         msg.reply_text(f"[{custom_text}]({link_url})", disable_web_page_preview=False)
