@@ -6,7 +6,7 @@ import subprocess
 from pyrogram import Client
 from pyrogram.types import Message
 
-from bot import utils
+from bot.utils import *
 
 def tgInfo(client: Client, msg: Message):
     print("processing TG", flush=True)
@@ -48,7 +48,7 @@ def tgInfo(client: Client, msg: Message):
     mediainfo_txt = subprocess.check_output(
         ['mediainfo', fileName]).decode("utf-8")
 
-
+    print("ok! mediainfo")
     try:
         checkm = manger(mediainfo_txt)
         msg.reply_text(f"[{custom_text}]({link_url})", disable_web_page_preview=False)
