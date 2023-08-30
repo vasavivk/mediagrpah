@@ -4,7 +4,7 @@ import subprocess
 import httpx
 from pyrogram.types import Message
 from bot.utils import manger
-from requests import Session, get
+import requests
 
 URLRx = re.compile(r"(http|ftp|https):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-])")
 nameRx = re.compile(r".+/(.+)")
