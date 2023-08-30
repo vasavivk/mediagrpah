@@ -5,7 +5,7 @@ import subprocess
 def create_telegraph_page(html_text, title):
     telegraph = Telegraph(access_token="df37be0d94ded1eff095b0c9d5e43268dcf039f597e110433945b83f5aac", domain="graph.org")
     
-    response = telegraph.create_page(f'MediaInfo of {title}',author_name='MediaInfoBot', author_url="https://telegram.dog/applemuiscdlBot, html_content=html_text)
+    response = telegraph.create_page(f'MediaInfo of {title}',author_name='MediaInfoBot', author_url="https://telegram.dog/applemuiscdlBot", html_content=html_text)
     return response["url"]
 
 def format_sections(input_text):
