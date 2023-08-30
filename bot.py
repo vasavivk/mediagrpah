@@ -24,8 +24,7 @@ For MediaInfo:
 `reply /info to file`
 
 For audio Spek:
-`reply /spek to audio`
-
+`reply /spek or /sox to audio`
 
 
 Made by @thekvt🧪"""
@@ -55,7 +54,7 @@ def hello(client: Client, message: Message):
         return
 
     try:
-        if "/spek" in message.text:
+        if "/spek" or "/sox" in message.text:
             message.reply("Processing your spectrogram request...")
             generateSpek(message)
             return
