@@ -36,6 +36,6 @@ def get_soxcap(file_path,mime):
     mediainfo_cmd = (f'mediainfo --Output="Audio;%Format% %Compression_Mode% | {mime_type}\\n\\n'
                      'Duration: %Duration/String%\\n'
                      'Stream: %StreamSize/String%\\n'
-                     '%BitRate_Mode% %BitRate/String%, %BitDepth%, %SamplingRate/String%, %Channel(s)% channels" '
+                     '%BitRate_Mode% %BitRate/String%, %BitDepth/String% %SamplingRate/String%, %Channel(s)% channels" '
                      f'"{file_path}"')
     return subprocess.check_output(mediainfo_cmd, shell=True, text=True)
