@@ -26,6 +26,7 @@ def gen_ddl_mediainfo(msg: Message, ddl: str, name: str):
         checkm = manger(mediainfo_txt,name)
         msg.reply_text(f'**[{name}]({checkm})**',
                 disable_web_page_preview=False)
+        print('uplosd ddl ok')
     except Exception as e:
         print("Error:", str(e))
     finally:
