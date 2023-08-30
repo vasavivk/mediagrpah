@@ -30,18 +30,7 @@ def ddlinfo(msg: Message):
 def gen_ddl_mediainfo(msg: Message, ddl: str, name: str):
     #reply_msg = message.reply_text("Generating Mediainfo, Please wait...")
     try:
-        download_path = f"download/{name}"
-        
-        headers = {"user-agent":"Mozilla/5.0 (Linux; Android 12; 2201116PI) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Mobile Safari/537.36"}
-
-        with requests.get(ddl, stream=True,  headers=headers) as r:
-            r.raise_for_status()
-            with open(download_path, 'wb') as f:
-                for chunk in r.iter_content(chunk_size=8192):
-                    if chunk:
-                        f.write(chunk)
-
-        mediainfo_txt = subprocess.check_output(['mediainfo', download_path]).decode("utf-8")
+        mediainfo_txt = subprocess.check_output(['mediainfo', ddl]).decode("utf-8")
         checkm = manger(mediainfo_txt)
         reply_msg.edit(f'**[{name}]({checkm})**',
                 disable_web_page_preview=False)
