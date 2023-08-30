@@ -8,7 +8,7 @@ from pyrogram.types import Message
 
 from bot.sox import generateSpek
 from bot.tgFile import tgInfo
-
+from bot.ddl import ddlinfo
 #load_dotenv()
 
 #sys.path.append(os.path.join(os.getcwd(), 'services'))
