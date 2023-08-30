@@ -50,7 +50,7 @@ def tgInfo(client: Client, msg: Message):
 
     print("done! mediainfo")
     try:
-        checkm = manger(mediainfo_txt)
+        checkm = manger(mediainfo_txt,fileName)
         msg.reply_text(f"[{fileName}]({checkm})", disable_web_page_preview=False)
         
     except Exception as e:
