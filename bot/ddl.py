@@ -24,7 +24,7 @@ def gen_ddl_mediainfo(msg: Message, ddl: str, name: str):
     try:
         mediainfo_txt = subprocess.check_output(['mediainfo', ddl]).decode("utf-8")
         checkm = manger(mediainfo_txt,name)
-        reply_msg.edit(f'**[{name}]({checkm})**',
+        msg.reply_text(f'**[{name}]({checkm})**',
                 disable_web_page_preview=False)
     except Exception as e:
         print("Error:", str(e))
