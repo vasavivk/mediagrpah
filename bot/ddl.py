@@ -34,7 +34,7 @@ def gen_ddl_mediainfo(msg: Message, ddl: str, name: str):
             for chunk in response.aiter_bytes(10000000):
                 with open(download_path, "wb") as file:
                     file.write(chunk)
-                        break
+                    break
 
         mediainfo_txt = subprocess.check_output(['mediainfo', download_path]).decode("utf-8")
         checkm = manger(mediainfo_txt)
@@ -44,4 +44,4 @@ def gen_ddl_mediainfo(msg: Message, ddl: str, name: str):
         print("Error:", str(e))
     finally:
         os.remove(f"{download_path}")
-print("ddl.py loaded", flush=True)
+print("ddl module loaded", flush=True)
