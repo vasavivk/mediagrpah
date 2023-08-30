@@ -1,7 +1,6 @@
 import os
 import re
 import subprocess
-import httpx
 from pyrogram.types import Message
 from bot.utils import manger
 import requests
