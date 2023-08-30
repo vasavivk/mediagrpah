@@ -4,7 +4,6 @@ import subprocess
 import httpx
 from pyrogram.types import Message
 from bot.utils import manger
-from async_timeout import timeout
 
 URLRx = re.compile(r"(http|ftp|https):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-])")
 nameRx = re.compile(r".+/(.+)")
@@ -29,12 +28,12 @@ def gen_ddl_mediainfo(msg: Message, ddl: str, name: str):
         headers = {"user-agent": "Mozilla/5.0 (Linux; Android 12; 2201116PI) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Mobile Safari/537.36"}
         
         # Trigger TimeoutError after 15 seconds if download is slow / unsuccessful 
-        with timeout(12):
-            with client.stream("GET", ddl, headers=headers) as response:
+
+        with client.stream("GET", ddl, headers=headers, timeout=12) as response:
                 # Download 10mb Chunk
-                for chunk in response.aiter_bytes(10000000):
-                    with open(download_path, "wb") as file:
-                        file.write(chunk)
+            for chunk in response.aiter_bytes(10000000):
+                with open(download_path, "wb") as file:
+                    file.write(chunk)
                         break
 
         mediainfo_txt = subprocess.check_output(['mediainfo', download_path]).decode("utf-8")
