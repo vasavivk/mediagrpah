@@ -4,6 +4,7 @@ import subprocess
 import httpx
 from pyrogram.types import Message
 from bot.utils import manger
+from requests import Session, get
 
 URLRx = re.compile(r"(http|ftp|https):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-])")
 nameRx = re.compile(r".+/(.+)")
@@ -23,16 +24,14 @@ def gen_ddl_mediainfo(msg: Message, ddl: str, name: str):
     try:
         download_path = f"download/{name}"
         
-        # Initiating Httpx client 
-        client = httpx.Client()  
-        headers = {"user-agent": "Mozilla/5.0 (Linux; Android 12; 2201116PI) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Mobile Safari/537.36"}
-        
-        # Trigger TimeoutError after 15 seconds if download is slow / unsuccessful 
+        session = requests.Session()
+        headers = {"user-agent":"Mozilla/5.0 (Linux; Android 12; 2201116PI) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Mobile Safari/537.36"}
 
-        with client.stream("GET", ddl, headers=headers, timeout=12) as response:
-            with open(download_path, "wb") as file:
-                for chunk in response.aiter_bytes(10000000):
-                    file.write(chunk)
+        response = session.get(url, stream=True, headers=headers, timeout=15)
+
+        with open(download_path, "wb") as file:
+            for chunk in response.iter_content(chunk_size=10000000):
+                file.write(chunk)
 
         mediainfo_txt = subprocess.check_output(['mediainfo', download_path]).decode("utf-8")
         checkm = manger(mediainfo_txt)
@@ -42,4 +41,5 @@ def gen_ddl_mediainfo(msg: Message, ddl: str, name: str):
         print("Error:", str(e))
     finally:
         os.remove(f"{download_path}")
+
 print("ddl module loaded", flush=True)
