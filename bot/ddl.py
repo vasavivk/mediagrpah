@@ -30,11 +30,9 @@ def gen_ddl_mediainfo(msg: Message, ddl: str, name: str):
         # Trigger TimeoutError after 15 seconds if download is slow / unsuccessful 
 
         with client.stream("GET", ddl, headers=headers, timeout=12) as response:
-                # Download 10mb Chunk
-            for chunk in response.aiter_bytes(10000000):
-                with open(download_path, "wb") as file:
-                    file.write(chunk)
-                    break
+            chunk = response.iter_any(10000000).read()
+            with open(download_path, "wb") as file:
+                file.write(chunk)
 
         mediainfo_txt = subprocess.check_output(['mediainfo', download_path]).decode("utf-8")
         checkm = manger(mediainfo_txt)
