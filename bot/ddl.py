@@ -27,7 +27,7 @@ def gen_ddl_mediainfo(msg: Message, ddl: str, name: str):
         session = requests.Session()
         headers = {"user-agent":"Mozilla/5.0 (Linux; Android 12; 2201116PI) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Mobile Safari/537.36"}
 
-        response = session.get(url, stream=True, headers=headers, timeout=15)
+        response = session.get(ddl, stream=True, headers=headers, timeout=15)
 
         with open(download_path, "wb") as file:
             for chunk in response.iter_content(chunk_size=10000000):
