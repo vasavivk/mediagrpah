@@ -23,7 +23,7 @@ def format_sections(input_text):
     return formatted_output 
 
 
-def manger(raw_info):
+def manger(raw_info,title):
     format_info= format_sections(raw_info)
     pre_link= create_telegraph_page(format_info)
     return pre_link
