@@ -21,7 +21,6 @@ def ddlinfo(msg: Message):
 def gen_ddl_mediainfo(msg: Message, ddl: str, name: str):
     #reply_msg = message.reply_text("Generating Mediainfo, Please wait...")
     try:
-        rand_str = randstr()
         download_path = f"download/{name}"
         
         # Initiating Httpx client 
