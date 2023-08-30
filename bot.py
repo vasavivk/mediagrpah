@@ -15,8 +15,8 @@ from bot.ddl import ddlinfo
 
 
 helpMessage = """MediaInfo support the following services:
-`• Direct download links
-• Telegram files`
+`• Telegram files
+• Direct download links`
 
 **Example:**
 For MediaInfo:
