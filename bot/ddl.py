@@ -9,6 +9,14 @@ from bot.utils import manger
 URLRx = re.compile(r"(http|ftp|https):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-])")
 nameRx = re.compile(r".+/(.+)")
 
+def download_file(url):
+    with requests.get(url, stream=True) as r:
+        r.raise_for_status()
+        with open(local_filename, 'wb') as f:
+             
+                f.write(chunk)
+    return local_filename
+    
 def ddlinfo(msg: Message):
     print("Got the DDL request!", flush=True)
     try:
@@ -26,11 +34,12 @@ def gen_ddl_mediainfo(msg: Message, ddl: str, name: str):
         
         headers = {"user-agent":"Mozilla/5.0 (Linux; Android 12; 2201116PI) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Mobile Safari/537.36"}
 
-        with requests.get(ddl, stream=True,headers=headers) as r:
+        with requests.get(ddl, stream=True,  headers=headers) as r:
             r.raise_for_status()
             with open(download_path, 'wb') as f:
-                for chunk in r.iter_content(chunk_size=8192): 
-                    f.write(chunk)
+                for chunk in r.iter_content(chunk_size=8192):
+                    if chunk:
+                        f.write(chunk)
 
         mediainfo_txt = subprocess.check_output(['mediainfo', download_path]).decode("utf-8")
         checkm = manger(mediainfo_txt)
