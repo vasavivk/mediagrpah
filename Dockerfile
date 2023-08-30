@@ -7,5 +7,5 @@ RUN apt-get -y install wget ffmpeg
 RUN wget https://mediaarea.net/repo/deb/repo-mediaarea_1.0-21_all.deb
 RUN dpkg -i repo-mediaarea_1.0-21_all.deb
 RUN apt-get -y install mediainfo python3-pip sox
-RUN pip install --upgrade pyrogram tgcrypto telegraph python-dotenv m3u8 httpx
+RUN pip install --upgrade pyrogram tgcrypto telegraph python-dotenv m3u8 requests
 RUN chmod +x start.sh
