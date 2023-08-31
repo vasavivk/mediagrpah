@@ -57,7 +57,7 @@ def hello(client: Client, message: Message):
         return
 
     try:
-        if "/spek" or "/sox" in message.text:
+        if "/sox" in message.text:
             message.reply("Processing your spectrogram request...")
             generateSpek(message)
             return
