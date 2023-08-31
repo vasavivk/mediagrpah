@@ -54,13 +54,15 @@ def hello(client: Client, message: Message):
         return
 
     try:
-        if "/sox" in message.text:
+        if "/spek" in message.text:
             message.reply("Processing your spectrogram request...")
             generateSpek(message)
             return
 
         elif "/info" in message.text:
-            if message.reply_to_message:
+            if 'music.apple' in message.text.lower():
+                amInfo(message)
+            elif message.reply_to_message:
                 message.reply("Processing your Telegram file request...")
                 tgInfo(client, message)
             elif len(message.text) > 10:
