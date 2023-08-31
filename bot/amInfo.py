@@ -94,5 +94,4 @@ Mastered for iTunes: **{adm}**
 """
 
     message.reply_photo(photo=artwork.format(w=w,h=h), caption=text)
-
 print("appleMusic loaded", flush=True)
