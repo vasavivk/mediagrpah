@@ -16,14 +16,10 @@ from bot.amInfo import amInfo
 
 
 helpMessage = """MediaInfo support the following services:
-`• Telegram files
-• Direct download links
-• Apple Music Album links`
+`• Telegram files`
 
 **Example:**
 For MediaInfo:
-`/info url`
-`/info apple music url`
 `reply /info to file`
 
 For audio Spek:
@@ -57,20 +53,20 @@ def hello(client: Client, message: Message):
         return
 
     try:
-        if "/sox" in message.text:
+        if ("/sox" or "/spek") in message.text:
             message.reply("Processing your spectrogram request...")
             generateSpek(message)
             return
 
         elif "/info" in message.text:
-            if 'music.apple' in message.text.lower():
-                amInfo(message)
-            elif message.reply_to_message:
+            #if 'music.apple' in message.text.lower():
+                #amInfo(message)
+            if message.reply_to_message:
                 message.reply("Processing your Telegram file request...")
                 tgInfo(client, message)
-            elif len(message.text) > 10:
-                message.reply("Processing your DDL request...")
-                ddlinfo(message)
+            #elif len(message.text) > 10:
+                #message.reply("Processing your DDL request...")
+                #ddlinfo(message)
     except Exception as e:
         message.reply(f"`An error occured!`\n{e}")
         print(e, flush=True)
