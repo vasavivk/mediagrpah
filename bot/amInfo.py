@@ -1,6 +1,6 @@
 import re
 import m3u8
-from requests import get
+import requests
 from pyrogram.types import Message
 
 apple_rx = re.compile(r"apple\.com\/(\w\w)\/album\/.+\/(\d+|pl\..+)")
