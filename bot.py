@@ -17,11 +17,13 @@ from bot.amInfo import amInfo
 
 helpMessage = """MediaInfo support the following services:
 `• Telegram files
-• Direct download links`
+• Direct download links
+• Apple Music Album links`
 
 **Example:**
 For MediaInfo:
 `/info url`
+`/info apple music url`
 `reply /info to file`
 
 For audio Spek:
