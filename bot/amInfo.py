@@ -80,16 +80,18 @@ def amInfo(message: Message):
         formatted_lines.append(formatted_line)
     formatted_code = "\n".join([line for line in formatted_lines])
 
-    text = f"""
-    Album  : **[{name}]({url}) | [{w}x{h}]({artwork.format(w=w,h=h)})**
-    Artist        : **{artist}**
-    Release Date  : **{release_date}**
-    Codecs: **{' | '.join(codecs)}**
-    Barcode: **{barcode}**
-    Mastered for iTunes: **{adm}**\n
-    **Tracklist**:\n{formatted_code}
-    \n\n{Copyright}
-    """
+    text = f"""Album       : **[{name}]({url}) | [{w}x{h}]({artwork.format(w=w, h=h)})**
+Artist      : **{artist}**
+Release Date: **{release_date}**
+Codecs      : **{' | '.join(codecs)}**
+Barcode     : **{barcode}**
+Mastered for iTunes: **{adm}**
+
+**Tracklist**:
+{formatted_code}
+
+{Copyright}
+"""
 
     message.reply_photo(photo=artwork.format(w=w,h=h), caption=text)
 
