@@ -48,6 +48,7 @@ def amInfo(message: Message):
     artist = info['attributes']['artistName']
     traits = info['attributes']['audioTraits']
     artwork = info['attributes']['artwork']['url'].format(w=3000, h=3000).replace('bb.jpg', 'bb-999.jpg')
+    photo = info['attributes']['artwork']['url'].format(w=1200, h=1200)
     artlink = requests.post("https://catbox.moe/user/api.php", data={"reqtype": "urlupload", "url": {artwork}}).text
     barcode = info['attributes']['upc']
     Copyright = info['attributes']['copyright']
