@@ -39,7 +39,7 @@ def amInfo(message: Message):
     if response.status_code == 401:
         print("Updating token!")
         updateToken()
-        response = requests.get(f'https://amp-api.music.apple.com/v1/catalog/{region}/albums/{id_}/', params=params, headers=headers)
+        response = requests.get(f'https://amp-api.music.apple.com/v1/catalog/{region}/albums/{id_}/', params=params, headers=headers).json()
     info = response.json()['data'][0]
     release_date = info['attributes']['releaseDate']
     adm = 'True' if info['attributes']['isMasteredForItunes'] else 'False'
