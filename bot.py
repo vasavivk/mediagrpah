@@ -9,7 +9,7 @@ from pyrogram.types import Message
 from bot.sox import generateSpek
 from bot.tgFile import tgInfo
 from bot.ddl import ddlinfo
-from bot.amInfo import amInfo
+from bot.amInfo import amInfo, amvInfo
 #load_dotenv()
 
 #sys.path.append(os.path.join(os.getcwd(), 'services'))
@@ -59,9 +59,11 @@ def hello(client: Client, message: Message):
             return
 
         elif "/info" in message.text:
-            #if 'music.apple' in message.text.lower():
-                #amInfo(message)
-            if message.reply_to_message:
+            if 'music.apple' and 'album' in message.text.lower():
+                amInfo(message)
+            if 'music.apple' and 'music-video' in message.text.lower():
+                amvInfo(message) 
+            elif message.reply_to_message:
                 message.reply("Processing your Telegram file request...")
                 tgInfo(client, message)
             #elif len(message.text) > 10:
