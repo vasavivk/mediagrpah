@@ -2,7 +2,7 @@ import re
 import m3u8
 import requests
 from pyrogram.types import Message
-from utils import katbin_paste
+from bot.utils import katbin_paste
 apple_rx = re.compile(r"apple\.com\/(\w\w)\/album\/.+\/(\d+|pl\..+)")
 applemv_rx = re.compile(r"https://music\.apple\.com/(\w+)/music-video/.+\/(\d+)")
 
