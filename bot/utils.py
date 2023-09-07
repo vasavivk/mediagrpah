@@ -1,6 +1,38 @@
 from telegraph import Telegraph
 import re
 import subprocess
+import requests
+from bs4 import BeautifulSoup
+
+def katbin_paste(text: str) -> str:
+    """
+    Paste the text on katb.in website.
+    """
+    
+    katbin_url = "https://katb.in"
+    
+    # Send a GET request to katb.in
+    response = requests.get(katbin_url)
+    soup = BeautifulSoup(response.content, "html.parser")
+    
+    # Extract the CSRF token
+    csrf_token = soup.find("input", {"name": "_csrf_token"}).get("value")
+    
+    try:
+        # Send a POST request to paste the text
+        paste_post = requests.post(
+            katbin_url,
+            data={"_csrf_token": csrf_token, "paste[content]": text},
+            allow_redirects=False,
+        )
+        
+        # Construct the output URL
+        output_url = f"{katbin_url}{paste_post.headers['location']}"
+        
+        return output_url
+    
+    except Exception as e:
+        return f"Something went wrong while pasting text in katb.in: {str(e)}"
 
 def create_telegraph_page(html_text, title):
     telegraph = Telegraph(access_token="df37be0d94ded1eff095b0c9d5e43268dcf039f597e110433945b83f5aac", domain="graph.org")
