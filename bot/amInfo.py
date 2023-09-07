@@ -86,7 +86,7 @@ Release Date: **{release_date}**
 Codecs      : **{' | '.join(codecs)}**
 Barcode     : **{barcode}**
 Mastered for iTunes: **{adm}**
-**[{Tracklist}]({trkplst})**
+**[Tracklist]({trkplst})**
 {Copyright}
 """
 
