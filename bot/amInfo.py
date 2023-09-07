@@ -90,7 +90,7 @@ Mastered for iTunes: **{adm}**
 {Copyright}
 """
 
-    message.reply_photo(photo=artlink, caption=text)
+    message.reply_photo(photo=artwork, caption=text)
 
 
 def amvInfo(message: Message):
@@ -131,7 +131,7 @@ def amvInfo(message: Message):
     Max Resolution: **{maxres}**\n
     ISRC        : {isrc}
     """
-    message.reply_photo(photo=artlink, caption=text)
+    message.reply_photo(photo=artwork, caption=text)
 
 
 print("appleMusic loaded", flush=True)
