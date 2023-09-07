@@ -89,7 +89,7 @@ Mastered for iTunes: **{adm}**
 **[Tracklist]({trkplst})**
 {Copyright}
 """
-
+    print(artlink,artwork)
     message.reply_photo(photo=artwork, caption=text)
 
 
