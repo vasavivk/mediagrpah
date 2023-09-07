@@ -2,7 +2,7 @@ import re
 import m3u8
 import requests
 from pyrogram.types import Message
-
+from utils import katbin_paste
 apple_rx = re.compile(r"apple\.com\/(\w\w)\/album\/.+\/(\d+|pl\..+)")
 applemv_rx = re.compile(r"https://music\.apple\.com/(\w+)/music-video/.+\/(\d+)")
 
@@ -47,9 +47,8 @@ def amInfo(message: Message):
     name = info['attributes']['name']
     artist = info['attributes']['artistName']
     traits = info['attributes']['audioTraits']
-    artwork = info['attributes']['artwork']['url']
-    w = str(info['attributes']['artwork']['width'])
-    h = str(info['attributes']['artwork']['height'])
+    artwork = info['attributes']['artwork']['url']format(w=3000, h=3000).replace('bb.jpg', 'mv-999.jpg')
+    artlink = requests.post("https://catbox.moe/user/api.php", data={"reqtype": "urlupload", "url": {artwork}}).text
     barcode = info['attributes']['upc']
     Copyright = info['attributes']['copyright']
     stream = not info['attributes']['isComplete']
@@ -79,21 +78,19 @@ def amInfo(message: Message):
         formatted_line = f"{track['attributes']['trackNumber']} {name} {duration}"
         formatted_lines.append(formatted_line)
     formatted_code = "\n".join([line for line in formatted_lines])
+    trkplst = katbin_paste(formatted_code)
 
-    text = f"""Album       : **[{name}]({url}) | [{w}x{h}]({artwork.format(w=w, h=h)})**
+    text = f"""Album       : **[{name}]({url}) | [3000x3000]({artlink})**
 Artist      : **{artist}**
 Release Date: **{release_date}**
 Codecs      : **{' | '.join(codecs)}**
 Barcode     : **{barcode}**
 Mastered for iTunes: **{adm}**
-
-**Tracklist**:
-{formatted_code}
-
+**[{Tracklist}]({trkplst})**
 {Copyright}
 """
 
-    message.reply_photo(photo=artwork.format(w=w,h=h), caption=text)
+    message.reply_photo(photo=artlink, caption=text)
 
 
 def amvInfo(message: Message):
@@ -114,7 +111,7 @@ def amvInfo(message: Message):
 
     artist = response['data'][0]['attributes']['artistName']
     artwork = response['data'][0]['attributes']['artwork']['url'].format(w=3000, h=3000).replace('mv.jpg', 'mv-999.jpg')
-    artlink = post("https://catbox.moe/user/api.php", data={"reqtype": "urlupload", "url": {artwork}}).text
+    artlink = requests.post("https://catbox.moe/user/api.php", data={"reqtype": "urlupload", "url": {artwork}}).text
 
     genre = ','.join(response['data'][0]['attributes']['genreNames'])
     hires = '🟢' if response['data'][0]['attributes']['has4K'] else '🔴'
