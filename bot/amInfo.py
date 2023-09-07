@@ -4,7 +4,7 @@ import requests
 from pyrogram.types import Message
 
 apple_rx = re.compile(r"apple\.com\/(\w\w)\/album\/.+\/(\d+|pl\..+)")
-
+applemv_rx = re.compile(r"https://music\.apple\.com/(\w+)/music-video/.+\/(\d+)")
 
 headers = {
     'origin': 'https://music.apple.com',
@@ -94,4 +94,47 @@ Mastered for iTunes: **{adm}**
 """
 
     message.reply_photo(photo=artwork.format(w=w,h=h), caption=text)
+
+
+def amvInfo(message: Message):
+    result = applemv_rx.search(message.text)
+    if not result:
+        message.reply("`Improper Apple Music album URL!`")
+        return
+    region, id_ = result.groups()
+    response = requests.get(f'https://amp-api.music.apple.com/v1/catalog/{region}/music-videos/{id_}/', params=params, headers=headers)
+    if response.status_code == 401:
+        print("Updating token!")
+        updateToken()
+        response = requests.get(f'https://amp-api.music.apple.com/v1/catalog/{region}/music-videos/{id_}/', params=params, headers=headers)
+    mv = response['data'][0]['attributes']['name']
+    url = response['data'][0]['attributes']['url']
+    dura = response['data'][0]['attributes']['durationInMillis']
+    fdura = f"{dura // 60000}:{dura // 1000 % 60:02}"
+
+    artist = response['data'][0]['attributes']['artistName']
+    artwork = response['data'][0]['attributes']['artwork']['url'].format(w=3000, h=3000).replace('mv.jpg', 'mv-999.jpg')
+    artlink = post("https://catbox.moe/user/api.php", data={"reqtype": "urlupload", "url": {artwork}}).text
+
+    genre = ','.join(response['data'][0]['attributes']['genreNames'])
+    hires = '🟢' if response['data'][0]['attributes']['has4K'] else '🔴'
+    hdr = '🟢' if response['data'][0]['attributes']['hasHDR'] else '🔴'
+    isrc = response['data'][0]['attributes']['isrc']
+    date = response['data'][0]['attributes']['releaseDate']
+    maxres = f"{response['data'][0]['attributes']['previews'][0]['artwork']['width']}x{response['data'][0]['attributes']['previews'][0]['artwork']['height']}"
+    format = f"4K:{hires} | HDR:{hdr}"
+
+    text = f"""
+    Music Video : **[{mv}]({url}) | [3000x3000]({artlink})**
+    Duration    : **{fdura} min**
+    Artist      : **{artist}**
+    Genre       : **{genre}**
+    Release Date: **{date}**
+    Formats     : **{format}**
+    Max Resolution: **{maxres}**\n
+    ISRC        : {isrc}
+    """
+    message.reply_photo(photo=artlink, caption=text)
+
+
 print("appleMusic loaded", flush=True)
