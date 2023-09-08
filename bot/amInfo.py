@@ -92,6 +92,7 @@ Codecs : **{' | '.join(codecs)}**
 Barcode : **{barcode}**
 Mastered for iTunes: **{adm}**
              **[Tracklist]({trkplst})**\n
+             {formatted_code}
 {Copyright}
 """
     print(artlink,artwork)
