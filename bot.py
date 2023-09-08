@@ -17,11 +17,11 @@ from bot.amInfo import amInfo, amvInfo
 
 helpMessage = """MediaInfo support the following services:
 `• Telegram files`
-
+`• Apple Muisc`
 **Example:**
 For MediaInfo:
 `reply /info to file`
-
+`/info <am url>` (only albums and music video)
 For audio Spek:
 `reply /spek or /sox to audio`
 
@@ -36,7 +36,7 @@ app = Client('botsession', api_id=os.getenv('api_id'),
 '''
 app = Client('botsession', api_id=25092986,
              api_hash='77b4dac018b806e625c3e9b1e1a65b6d',
-             bot_token='6349129074:AAGSLe4O37msRykoOUP7BIzeUEJEdxS8B-U')
+             bot_token='6361091122:AAFjSMXWn_pOAFJTBUlQxYOBerhxD4FnPZ0')
 
 print("MediaInfo bot started!", flush=True)
 
