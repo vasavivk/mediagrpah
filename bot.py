@@ -22,7 +22,7 @@ helpMessage = """MediaInfo support the following services:
 
 For MediaInfo:
 `reply /info to file`
-`/info Apple Muisc url` (only albums and music video)
+`/info AM_url` (only albums and music video)
 
 For audio Spek:
 `reply /spek or /sox to audio`
