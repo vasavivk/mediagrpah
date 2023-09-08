@@ -1,6 +1,7 @@
 import re
 import m3u8
-import requests
+import requests 
+from pyrogram import Client
 from pyrogram.types import Message
 from bot.utils import katbin_paste
 apple_rx = re.compile(r"apple\.com\/(\w\w)\/album\/.+\/(\d+|pl\..+)")
@@ -33,6 +34,7 @@ def amInfo(message: Message):
     if not result:
         message.reply("`Improper Apple Music album URL!`")
         return
+    message.reply("`Processing Apple Music Album`")
     region, id_ = result.groups()
     #print(region, id_)
     response = requests.get(f'https://amp-api.music.apple.com/v1/catalog/{region}/albums/{id_}/', params=params, headers=headers)
@@ -101,6 +103,7 @@ def amvInfo(message: Message):
     if not result:
         message.reply("`Improper Apple Music album URL!`")
         return
+     message.reply("`Processing Apple Music Video`")
     region, id_ = result.groups()
     response = requests.get(f'https://amp-api.music.apple.com/v1/catalog/{region}/music-videos/{id_}/', params=params, headers=headers)
     if response.status_code == 401:
