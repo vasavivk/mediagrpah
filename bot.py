@@ -26,7 +26,7 @@ For audio Spek:
 `reply /spek or /sox to audio`
 
 
-Made by @thekvt🧪"""
+Made by @thekvt </>"""
 
 
 '''
