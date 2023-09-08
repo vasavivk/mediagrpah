@@ -83,11 +83,11 @@ def amInfo(message: Message):
     formatted_code = "\n".join([line for line in formatted_lines])
     trkplst = katbin_paste(formatted_code)
     print(trkplst)
-    text = f"""Album       : **[{name}]({url}) | [3000x3000]({artlink})**
-Artist      : **{artist}**
-Release Date: **{release_date}**
-Codecs      : **{' | '.join(codecs)}**
-Barcode     : **{barcode}**
+    text = f"""Album : **[{name}]({url}) | [3000x3000]({artlink})**
+Artist : **{artist}**
+Release Date : **{release_date}**
+Codecs : **{' | '.join(codecs)}**
+Barcode : **{barcode}**
 Mastered for iTunes: **{adm}**
 **[Tracklist]({trkplst})**
 {Copyright}
