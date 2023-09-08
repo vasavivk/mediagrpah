@@ -21,12 +21,12 @@ helpMessage = """MediaInfo support the following services:
 **Example:**
 For MediaInfo:
 `reply /info to file`
-`/info`  <am url> (only albums and music video)
+`/info`  <am url\> (only albums and music video)
 For audio Spek:
 `reply /spek or /sox to audio`
 
 
-Made by @thekvt </>"""
+Made by @thekvt"""
 
 
 '''
