@@ -103,7 +103,7 @@ def amvInfo(message: Message):
     if not result:
         message.reply("`Improper Apple Music album URL!`")
         return
-     message.reply("`Processing Apple Music Video`")
+    message.reply("`Processing Apple Music Video`")
     region, id_ = result.groups()
     response = requests.get(f'https://amp-api.music.apple.com/v1/catalog/{region}/music-videos/{id_}/', params=params, headers=headers)
     if response.status_code == 401:
