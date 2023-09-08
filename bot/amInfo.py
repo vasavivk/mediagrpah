@@ -89,7 +89,7 @@ Release Date : **{release_date}**
 Codecs : **{' | '.join(codecs)}**
 Barcode : **{barcode}**
 Mastered for iTunes: **{adm}**
-**[Tracklist]({trkplst})**
+         **[Tracklist]({trkplst})**\n
 {Copyright}
 """
     print(artlink,artwork)
@@ -133,7 +133,7 @@ Artist      : **{artist}**
 Genre       : **{genre}**
 Release Date: **{date}**
 Formats     : **{format}**
-Max Resolution: **{maxres}**\n
+Max Resolution: **{maxres}**
 ISRC        : {isrc}
 """
     message.reply_photo(photo=photo.format(w=w,h=h), caption=text)
