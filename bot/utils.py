@@ -11,8 +11,17 @@ def katbin_paste(text: str) -> str:
     
     katbin_url = "https://katb.in"
     
+    # Create a session object
+    session = requests.Session()
+    
+    # Set the cookies in the session
+    cookies = {
+        "_ketbin_key": "SFMyNTY.g3QAAAABbQAAAAtfY3NyZl90b2tlbm0AAAAYdlNtTkxzOEJqamFUY0F3YzB2SjNmemk5.SWANrFV1W1viyOn0cHRB2BJcv0pS6Q_7L-z04vNHM5Y"
+    }
+    session.cookies.update(cookies)
+    
     # Send a GET request to katb.in
-    response = requests.get(katbin_url)
+    response = session.get(katbin_url)
     soup = BeautifulSoup(response.content, "html.parser")
     
     # Extract the CSRF token
@@ -20,7 +29,7 @@ def katbin_paste(text: str) -> str:
     
     try:
         # Send a POST request to paste the text
-        paste_post = requests.post(
+        paste_post = session.post(
             katbin_url,
             data={"_csrf_token": csrf_token, "paste[content]": text},
             allow_redirects=False,
