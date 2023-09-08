@@ -82,7 +82,7 @@ def amInfo(message: Message):
         formatted_lines.append(formatted_line)
     formatted_code = "\n".join([line for line in formatted_lines])
     trkplst = katbin_paste(formatted_code)
-
+    print(trkplst)
     text = f"""Album       : **[{name}]({url}) | [3000x3000]({artlink})**
 Artist      : **{artist}**
 Release Date: **{release_date}**
@@ -136,7 +136,7 @@ def amvInfo(message: Message):
     Formats     : **{format}**
     Max Resolution: **{maxres}**\n
     ISRC        : {isrc}
-    """
+"""
     message.reply_photo(photo=photo.format(w=w,h=h), caption=text)
 
 
