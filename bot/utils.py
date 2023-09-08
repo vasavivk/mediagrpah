@@ -71,3 +71,5 @@ def get_soxcap(file_path,mime):
                      '%BitRate_Mode% %BitRate/String%, %BitDepth/String% %SamplingRate/String%, %Channel(s)% channels" '
                      f'"{file_path}"')
     return subprocess.check_output(mediainfo_cmd, shell=True, text=True)
+
+print("Utils loaded", flush=True)
