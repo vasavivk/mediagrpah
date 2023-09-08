@@ -92,7 +92,7 @@ Codecs : **{' | '.join(codecs)}**
 Barcode : **{barcode}**
 Mastered for iTunes: **{adm}**
              **[Tracklist]({trkplst})**\n
-             {formatted_code}
+    
 {Copyright}
 """
     print(artlink,artwork)
@@ -136,9 +136,9 @@ Duration    : **{fdura} min**
 Artist      : **{artist}**
 Genre       : **{genre}**
 Release Date: **{date}**
+ISRC        : {isrc}
 Formats     : **{format}**
 Max Resolution: **{maxres}**
-ISRC        : {isrc}
 """
     message.reply_photo(photo=photo.format(w=w,h=h), caption=text)
 
