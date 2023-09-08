@@ -127,15 +127,14 @@ def amvInfo(message: Message):
     maxres = f"{info['previews'][0]['artwork']['width']}x{info['previews'][0]['artwork']['height']}"
     format = f"4K:{hires} | HDR:{hdr}"
 
-    text = f"""
-    Music Video : **[{mv}]({url}) | [3000x3000]({artlink})**
-    Duration    : **{fdura} min**
-    Artist      : **{artist}**
-    Genre       : **{genre}**
-    Release Date: **{date}**
-    Formats     : **{format}**
-    Max Resolution: **{maxres}**\n
-    ISRC        : {isrc}
+    text = f"""Music Video : **[{mv}]({url}) | [3000x3000]({artlink})**
+Duration    : **{fdura} min**
+Artist      : **{artist}**
+Genre       : **{genre}**
+Release Date: **{date}**
+Formats     : **{format}**
+Max Resolution: **{maxres}**\n
+ISRC        : {isrc}
 """
     message.reply_photo(photo=photo.format(w=w,h=h), caption=text)
 
