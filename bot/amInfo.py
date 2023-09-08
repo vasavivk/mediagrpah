@@ -47,8 +47,10 @@ def amInfo(message: Message):
     name = info['attributes']['name']
     artist = info['attributes']['artistName']
     traits = info['attributes']['audioTraits']
+    photo = info['attributes']['artwork']['url']
+    w = str(info['attributes']['artwork']['width'])
+    h = str(info['attributes']['artwork']['height'])
     artwork = info['attributes']['artwork']['url'].format(w=3000, h=3000).replace('bb.jpg', 'bb-999.jpg')
-    photo = info['attributes']['artwork']['url'].format(w=1200, h=1200)
     artlink = requests.post("https://catbox.moe/user/api.php", data={"reqtype": "urlupload", "url": {artwork}}).text
     barcode = info['attributes']['upc']
     Copyright = info['attributes']['copyright']
@@ -91,7 +93,7 @@ Mastered for iTunes: **{adm}**
 {Copyright}
 """
     print(artlink,artwork)
-    message.reply_photo(photo=artwork, caption=text)
+    message.reply_photo(photo=photo.format(w=w,h=h), caption=text)
 
 
 def amvInfo(message: Message):
@@ -104,22 +106,25 @@ def amvInfo(message: Message):
     if response.status_code == 401:
         print("Updating token!")
         updateToken()
-        response = requests.get(f'https://amp-api.music.apple.com/v1/catalog/{region}/music-videos/{id_}/', params=params, headers=headers).json()
-    mv = response['data'][0]['attributes']['name']
-    url = response['data'][0]['attributes']['url']
-    dura = response['data'][0]['attributes']['durationInMillis']
+        response = requests.get(f'https://amp-api.music.apple.com/v1/catalog/{region}/music-videos/{id_}/', headers=headers)
+    info = response.json()['data'][0]['attributes']    
+    mv = info['name']
+    url = info['url']
+    dura = info['durationInMillis']
     fdura = f"{dura // 60000}:{dura // 1000 % 60:02}"
-
-    artist = response['data'][0]['attributes']['artistName']
-    artwork = response['data'][0]['attributes']['artwork']['url'].format(w=3000, h=3000).replace('mv.jpg', 'mv-999.jpg')
+    photo = info['artwork']['url']
+    w = str(info['artwork']['width'])
+    h = str(info['artwork']['height'])
+    artist = info['artistName']
+    artwork = info['artwork']['url'].format(w=3000, h=3000).replace('mv.jpg', 'mv-999.jpg')
     artlink = requests.post("https://catbox.moe/user/api.php", data={"reqtype": "urlupload", "url": {artwork}}).text
 
-    genre = ','.join(response['data'][0]['attributes']['genreNames'])
-    hires = '🟢' if response['data'][0]['attributes']['has4K'] else '🔴'
-    hdr = '🟢' if response['data'][0]['attributes']['hasHDR'] else '🔴'
-    isrc = response['data'][0]['attributes']['isrc']
-    date = response['data'][0]['attributes']['releaseDate']
-    maxres = f"{response['data'][0]['attributes']['previews'][0]['artwork']['width']}x{response['data'][0]['attributes']['previews'][0]['artwork']['height']}"
+    genre = ','.join(info['genreNames'])
+    hires = '🟢' if info['has4K'] else '🔴'
+    hdr = '🟢' if info['hasHDR'] else '🔴'
+    isrc = info['isrc']
+    date = info['releaseDate']
+    maxres = f"{info['previews'][0]['artwork']['width']}x{info['previews'][0]['artwork']['height']}"
     format = f"4K:{hires} | HDR:{hdr}"
 
     text = f"""
@@ -132,7 +137,7 @@ def amvInfo(message: Message):
     Max Resolution: **{maxres}**\n
     ISRC        : {isrc}
     """
-    message.reply_photo(photo=artwork, caption=text)
+    message.reply_photo(photo=photo.format(w=w,h=h), caption=text)
 
 
 print("appleMusic loaded", flush=True)
