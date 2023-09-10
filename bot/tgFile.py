@@ -36,7 +36,7 @@ def tgInfo(client: Client, msg: Message):
             print("Makes no sense", flush=True)
             raise Exception("`This file makes no sense to me.`")
 
-    if int(size) <= 50000000:
+    if int(size) <= 500000:
         message.download(os.path.join(os.getcwd(), fileName))
 
     else:
