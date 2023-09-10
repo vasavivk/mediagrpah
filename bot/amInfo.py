@@ -52,8 +52,8 @@ def amInfo(message: Message):
     photo = info['attributes']['artwork']['url']
     w = str(info['attributes']['artwork']['width'])
     h = str(info['attributes']['artwork']['height'])
-    artwork = info['attributes']['artwork']['url'].format(w=3000, h=3000).replace('bb.jpg', 'bb-999.jpg')
-    artlink = requests.post("https://catbox.moe/user/api.php", data={"reqtype": "urlupload", "url": {artwork}}).text
+    artwork = info['attributes']['artwork']['url'].format(w=3000, h=3000)
+    #artlink = requests.post("https://catbox.moe/user/api.php", data={"reqtype": "urlupload", "url": {artwork}}).text
     barcode = info['attributes']['upc']
     Copyright = info['attributes']['copyright']
     stream = not info['attributes']['isComplete']
@@ -85,7 +85,7 @@ def amInfo(message: Message):
     formatted_code = "\n".join([line for line in formatted_lines])
     trkplst = katbin_paste(formatted_code)
     print(trkplst, 'ok')
-    text = f"""Album : **[{name}]({url}) | [3000x3000]({artlink})**
+    text = f"""Album : **[{name}]({url}) | [3000x3000]({artwork})**
 Artist : **{artist}**
 Release Date : **{release_date}**
 Codecs : **{' | '.join(codecs)}**
@@ -120,8 +120,8 @@ def amvInfo(message: Message):
     w = str(info['artwork']['width'])
     h = str(info['artwork']['height'])
     artist = info['artistName']
-    artwork = info['artwork']['url'].format(w=3000, h=3000).replace('mv.jpg', 'mv-999.jpg')
-    artlink = requests.post("https://catbox.moe/user/api.php", data={"reqtype": "urlupload", "url": {artwork}}).text
+    artwork = info['artwork']['url'].format(w=3000, h=3000)
+    #artlink = requests.post("https://catbox.moe/user/api.php", data={"reqtype": "urlupload", "url": {artwork}}).text
 
     genre = ','.join(info['genreNames'])
     hires = '🟢' if info['has4K'] else '🔴'
@@ -131,7 +131,7 @@ def amvInfo(message: Message):
     maxres = f"{info['previews'][0]['artwork']['width']}x{info['previews'][0]['artwork']['height']}"
     format = f"4K:{hires} | HDR:{hdr}"
 
-    text = f"""Music Video : **[{mv}]({url}) | [3000x3000]({artlink})**
+    text = f"""Music Video : **[{mv}]({url}) | [3000x3000]({artwork})**
 Duration    : **{fdura} min**
 Artist      : **{artist}**
 Genre       : **{genre}**
