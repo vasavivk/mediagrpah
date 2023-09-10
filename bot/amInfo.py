@@ -95,7 +95,7 @@ Mastered for iTunes: **{adm}**
     
 {Copyright}
 """
-    print(artlink,artwork)
+    #print(artlink,artwork)
     message.reply_photo(photo=photo.format(w=w,h=h), caption=text)
 
 
