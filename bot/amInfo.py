@@ -46,7 +46,7 @@ def amInfo(message: Message):
     release_date = info['attributes']['releaseDate']
     adm = 'True' if info['attributes']['isMasteredForItunes'] else 'False'
     url = info['attributes']['url']
-    name = info['attributes']['name']
+    abn = info['attributes']['name']
     artist = info['attributes']['artistName']
     traits = info['attributes']['audioTraits']
     photo = info['attributes']['artwork']['url']
@@ -85,7 +85,7 @@ def amInfo(message: Message):
     formatted_code = "\n".join([line for line in formatted_lines])
     trkplst = katbin_paste(formatted_code)
     print(trkplst, 'ok')
-    text = f"""Album : **[{name}]({url}) | [3000x3000]({artwork})**
+    text = f"""Album : **[{abn}]({url}) | [3000x3000]({artwork})**
 Artist : **{artist}**
 Release Date : **{release_date}**
 Codecs : **{' | '.join(codecs)}**
