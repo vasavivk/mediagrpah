@@ -5,10 +5,6 @@ import requests
 from bs4 import BeautifulSoup
 
 def katbin_paste(text: str) -> str:
-    """
-    Paste the text on katb.in website.
-    """
-    
     katbin_url = "https://katb.in"
     
     # Create a session object
@@ -69,7 +65,6 @@ def manger(raw_info, title):
     pre_link= create_telegraph_page(format_info, title)
     return pre_link
     
-
 
 
 def get_soxcap(file_path,mime):
