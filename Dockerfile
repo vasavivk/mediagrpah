@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install -y \
     megatools \
   && rm -rf /var/lib/apt/lists/*
 
-RUN wget -q -O /tmp/libzen0.deb https://mediaarea.net/download/binary/libzen0/0.4.41/libzen0v5_0.4.41-1_amd64.Ubuntu_22.10.deb \
+RUN wget -q -O /tmp/libzen0.deb https://mediaarea.net/download/binary/libzen0/0.4.41/libzen0v5_0.4.41-1_amd64.xUbuntu_22.04.deb \
   && dpkg -i /tmp/libzen0.deb \
   && rm /tmp/libzen0.deb
 
@@ -29,7 +29,7 @@ RUN wget -q -O /tmp/libmediainfo0.deb https://mediaarea.net/download/binary/libm
   && dpkg -i /tmp/libmediainfo0.deb \
   && rm /tmp/libmediainfo0.deb
 
-RUN wget -q -O /tmp/mediainfo.deb https://mediaarea.net/download/binary/mediainfo/23.04/mediainfo_23.04-1_amd64.Ubuntu_22.10.deb \
+RUN wget -q -O /tmp/mediainfo.deb https://mediaarea.net/download/binary/mediainfo/23.10/mediainfo_23.10-1_amd64.xUbuntu_22.04.deb \
   && dpkg -i /tmp/mediainfo.deb \
   && rm /tmp/mediainfo.deb
 
