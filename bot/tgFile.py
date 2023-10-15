@@ -53,7 +53,7 @@ def tgInfo(client: Client, msg: Message):
                 f.write(chunk)
 
     mediainfo_txt = subprocess.check_output(
-        ['mediainfo', fileName]).decode("utf-8")
+        ['mediainfo', fileName])
 
     print("done! mediainfo")
     try:
