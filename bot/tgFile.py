@@ -27,8 +27,8 @@ def tgInfo(client: Client, msg: Message):
     print('done')
     mime = media.mime_type
     fileName = media.file_name
-    size = media.file_size
-    c_size = f"{size_in_bytes / (1024 ** 3):.2f}GB" if size_in_bytes >= 1024 ** 3 else f"{size_in_bytes / (1024 ** 2):.2f}MB"
+    tgsize = media.file_size
+    c_size = f"{tgsize / (1024 ** 3):.2f}GB" if tgsize >= 1024 ** 3 else f"{tgsize / (1024 ** 2):.2f}MB"
     print(fileName, flush=True)
 
     if media == 'document':
@@ -36,7 +36,7 @@ def tgInfo(client: Client, msg: Message):
             print("Makes no sense", flush=True)
             raise Exception("`This file makes no sense to me.`")
 
-    if int(size) <= 2000:
+    if int(tgsize) <= 2000:
         message.download(os.path.join(os.getcwd(), fileName))
 
     else:
