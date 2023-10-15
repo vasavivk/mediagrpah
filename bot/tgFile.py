@@ -27,7 +27,7 @@ def tgInfo(client: Client, msg: Message):
     print('done')
     mime = media.mime_type
     fileName = media.file_name
-    #size = media.file_size
+    size = media.file_size
 
     print(fileName, flush=True)
 
