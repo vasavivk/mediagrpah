@@ -36,5 +36,5 @@ RUN wget -q -O /tmp/mediainfo.deb https://mediaarea.net/download/binary/mediainf
 RUN locale-gen en_US.UTF-8 && update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
 
 RUN pip install --upgrade pyrogram tgcrypto telegraph python-dotenv m3u8 requests bs4
-RUN chmod +x /start.sh
+RUN chmod +x start
 
