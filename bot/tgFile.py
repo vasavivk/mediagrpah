@@ -28,7 +28,7 @@ def tgInfo(client: Client, msg: Message):
     mime = media.mime_type
     fileName = media.file_name
     tgsize = media.file_size
-    c_size = f"{tgsize / (1024 ** 3):.2f}GB" if tgsize >= 1024 ** 3 else f"{tgsize / (1024 ** 2):.2f}MB"
+    c_size = f'{tgsize / 1024 / 1024:.2f} GB' if tgsize / 1024 / 1024 > 1024 else f'{tgsize / 1024:.2f} MB'
     print(fileName, flush=True)
 
     if media == 'document':
