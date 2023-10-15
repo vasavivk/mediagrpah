@@ -54,7 +54,8 @@ def tgInfo(client: Client, msg: Message):
 
     mediainfo_ = subprocess.run(
         ['mediainfo', fileName] ,capture_output=True, text=True)
-    mediainfo_txt = mediainfo_.stdout
+    mediainfo_txt = str(mediainfo_.stdout)
+    print(mediainfo_txt)
     print("done! mediainfo")
     try:
         checkm = manger(mediainfo_txt,fileName)
