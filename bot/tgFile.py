@@ -28,13 +28,14 @@ def tgInfo(client: Client, msg: Message):
     mime = media.mime_type
     fileName = media.file_name
     tgsize = media.file_size
-    def csize(tgsize):
-       mb = tgsize / 1024 / 1024
-       if mb > 1024:
-            gb = mb / 1024
-            return f"{gb:.2f} GB"
-        else:
-            return f"{mb:.2f} MB"
+
+def csize(tgsize):
+    mb = tgsize / 1024 / 1024
+    if mb > 1024:
+        gb = mb / 1024
+        return f"{gb:.2f} GB"
+    else:
+        return f"{mb:.2f} MB"
 
 
     print(fileName, tgsize,flush=True)
